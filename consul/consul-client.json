@@ -5,6 +5,9 @@
     "datacenter": "nomad-intro",
     "enable_syslog": true,
     "log_level": "INFO",
+    "ports": {
+        "dns": 53
+    },
     "ui_dir": "/opt/consul-ui",
     "encrypt": "KnqifJT6qkF0X+Zx9spnjg=="
 }

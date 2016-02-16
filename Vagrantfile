@@ -43,6 +43,10 @@ Vagrant.configure(2) do |config|
       node.vm.provision "shell", inline: "cd /vagrant/consul && make install install-client" # install consul-client
       node.vm.provision "shell", inline: "consul join 10.7.0.15"
       node.vm.provision "docker" # Just install it
+      # Remember to be outside the office network to get the Google DNS to work
+      node.vm.provision "file", source: "docker/docker_defaults", destination: "/tmp/docker_defaults"
+      node.vm.provision "shell", inline: "mv /tmp/docker_defaults /etc/default/docker"
+      node.vm.provision "shell", inline: "restart docker"
       node.vm.provision "shell", inline: "cd /vagrant/nomad && make install install-client"
       node.vm.provision "shell", inline: "hostess add docker#{d} $(</tmp/self.ip)"
       config.vm.provider "virtualbox" do |v|
