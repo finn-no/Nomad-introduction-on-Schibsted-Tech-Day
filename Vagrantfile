@@ -3,9 +3,12 @@
 
 Vagrant.configure(2) do |config|
   config.vm.box = "cbednarski/ubuntu-1404"
+  config.landrush.enabled = true
+  config.landrush.guest_redirect_dns = false
 
-  # Consul server. A significantly influenced by: https://github.com/trydb/tryconsul
+  # Consul server. Significantly influenced by: https://github.com/trydb/tryconsul
   config.vm.define "consul" do |c1|
+    c1.vm.hostname = "consul.vagrant.dev"
     c1.vm.network "private_network", ip: "10.7.0.15"
     c1.vm.provision "shell", inline: "hostnamectl set-hostname consul"
     c1.vm.provision "shell", inline: "cd /vagrant/consul && make deps install install-server"
@@ -18,6 +21,7 @@ Vagrant.configure(2) do |config|
 
   # Nomad server
   config.vm.define "nomad" do |n|
+    n.vm.hostname = "nomad.vagrant.dev"
     n.vm.network "private_network", ip: "10.7.0.10"
     n.vm.provision "shell", inline: "hostnamectl set-hostname nomad"
     n.vm.provision "shell", inline: "cd /vagrant/consul && make install install-client" # install consul
@@ -33,6 +37,7 @@ Vagrant.configure(2) do |config|
   # Nomad client / Docker hosts
   (1..3).each do |d|
     config.vm.define "docker#{d}" do |node|
+      node.vm.hostname = "docker#{d}.vagrant.dev"
       node.vm.network "private_network", ip: "10.7.0.2#{d}" # 10.7.0.21, 10.7.0.22, 10.7.0.23
       node.vm.provision "shell", inline: "hostnamectl set-hostname docker#{d}"
       node.vm.provision "shell", inline: "cd /vagrant/consul && make install install-client" # install consul-client
