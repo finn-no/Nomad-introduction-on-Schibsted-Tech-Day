@@ -1,6 +1,5 @@
 job "cadvisor" {
   region = "global"
-
   datacenters = ["nomad-intro"]
 
   type = "system"
