@@ -10,9 +10,9 @@ job "batchdecreaser" {
   }
 
   group "batch" {
-    count = 3
+    count = 1
 
-    task "dec" {
+    task "decr" {
       driver = "exec"
       config {
         command = "curl"
