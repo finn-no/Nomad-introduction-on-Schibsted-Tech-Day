@@ -31,6 +31,7 @@ job "cadvisor" {
         network {
           mbits = 100
           port "cadvisor" {
+            static = 9090
           }
         }
       }
