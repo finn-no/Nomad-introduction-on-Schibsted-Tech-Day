@@ -1,0 +1,17 @@
+{
+  "name": "nomad-intro",
+  "private": true,
+  "description": "Introduction to Nomad",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/finn-no/nomad-intro.git"
+  },
+  "author": "Stig Kleppe-Jørgensen",
+  "homepage": "https://github.com/finn-no/nomad-intro#readme",
+  "dependencies": {
+    "prez": "^4.5.0"
+  },
+  "scripts": {
+    "start": "prez --serve --such-notes --watch"
+  }
+}
