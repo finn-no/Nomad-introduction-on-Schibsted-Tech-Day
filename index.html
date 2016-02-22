@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>nomad-intro</title>
+
+    <meta name="description" content="Introduction to Nomad">
+    <meta name="author" content="Stig Kleppe-Jørgensen">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="css/highlight/styles/zenburn.css" id="highlight-theme">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!-- INCLUDE CSS HERE -->
+
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <div class="slides"><section id="intro" class="slide" data-has-notes="true">
+<h1>Nomad</h1><h2>cluster scheduling simplified</h2><h4>Stig Kleppe-Jørgensen - FINN - 2016.02.18</h4><aside class="notes"><p>Hi, before I start, I just wanted to know who has worked with tools like Kubernets and Mesos before. Could I get a show of hands?</p>
+<p>I&#39;m Stig and I work at FINN. I&#39;m gonna give you a short introduction to Nomad, the very new cluster scheduling tool from HashiCorp.</p>
+<p>taking a leaf out of Kubernetes&#39; book??</p></aside>
+</section>
+<section>
+<section id="what-is-cluster-scheduler-the-problem" class="slide" data-has-notes="true">
+<h1>Cluster scheduler?</h1><p>The PROBLEM: many applications and many machines</p><aside class="notes"><p>We are getting more and more applications and more and more machines to manage. That creates some problems.</p>
+<p>A cluster scheduler is a tool for managing some of these problems.</p></aside>
+</section>
+<section id="what-is-cluster-scheduler-the-solution" class="slide" data-has-notes="true">
+<h1>Cluster scheduler!</h1><ul>
+<li>abstracts away machines and location of applications</li>
+<li>declare what you want to run</li>
+<li>where and how to run is handled for you</li>
+</ul><aside class="notes"><p>It abstracts away machines and the location of applications, and enables users to declare what they want to run. And then the scheduler takes those declarations and decides where they should run and how to run them.</p></aside>
+</section>
+<section id="what-is-cluster-scheduler-why-needed" class="slide" data-has-notes="true">
+<h1>Why is it needed?</h1><p class="fragment fade-in">
+OH NOES! I need to scale up quickly.
+</p>
+<p class="fragment fade-in">
+OH NOES! I need to utilize my machines better.
+</p>
+<p class="fragment fade-in">
+OH NOES! My machine died.
+</p><aside class="notes"><p>So, then again, what are the problems we are trying to solve with this?</p>
+<p>Well, hopefully the service you are making will be successful, and then what happens? You need to scale. Too bad you have to make a change in your configuration management tool to make it happen, which has a much to long roundtrip. It gets even worse when you need to dynamically scale up and down as the load on different services varies throughout the day.</p>
+<p>At the same time you would like to use the least amount of hardware to support this scaling. Good luck doing that with your configuration management tool!</p>
+<p>And then the worst scenario: one of your machines dies. What happens with the applications that was running on that machine? Well, I know for sure that I would not like to be the one responsible for fixing this!</p></aside>
+</section>
+</section>
+<section>
+<section id="why-nomad-the-others" class="slide" data-has-notes="true">
+<h1>Why Nomad?</h1><p>Why not Fleet, Kubernetes, Mesos, Rancher, Swarm...</p><aside class="notes"><p>Ok, so we need a cluster scheduler.</p>
+<p>But why Nomad? Why not Fleet, Kubernetes, Mesos, Rancher, Swarm, etc.</p></aside>
+</section>
+<section id="why-nomad-simplicity" class="slide" data-has-notes="true">
+<h1>Why Nomad?</h1><h2>Simplicity!</h2><aside class="notes"><p>The one thing that separates Nomad from the rest is simplicity. This has been a core tenet with the HashiCorp people developing this tool.</p>
+<p>One aspect of this simplicity is...</p></aside>
+</section>
+<section id="why-nomad-one-binary" class="slide" data-has-notes="true">
+<h1>Why Nomad?</h1><h2>One binary!</h2><aside class="notes"><p>That is correct; it is extremely simple to get started with Nomad. Just start the Nomad binary on each machine in the cluster, link them together and you&#39;re good to go. It does not need any external services for coordination or storage, like Kubernetes needs etcd and Mesos needs Zookeeper. But of course you can use more tools for extending the usefulness of Nomad, like Consul for service discovery or Vault for managing secrets.</p></aside>
+</section>
+</section>
+<section id="other-stuff" class="slide" data-has-notes="true">
+<h1>Other stuff</h1><ul>
+<li>multi-datacenter and multi-region aware</li>
+<li>run jobs as jars, docker, rkt, qemu, fork/exec</li>
+<li>schedulers include service, batch and system</li>
+<li>supports rolling updates</li>
+</ul><aside class="notes"><p>Nomads model supports defining jobs that are multi-datacenter and multi-region aware.</p>
+<p>It can run Java jars directly, Docker of course, has support for Rocket and you can run queue - emju VMs directly. Or you can run executables directly, isolated through cgroups or with no isolation.</p>
+<p>The jobs can run as a service, long running, like a webapp. Or as a batch job, shorter running and can be run periodically. System means you typically want one instance running on each machine. This can be used for jobs like log collecting and monitoring.</p></aside>
+</section></div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      history: true,
+      center: true,
+
+      transition: Reveal.getQueryHash().transition || 'slide', // none/fade/slide/convex/concave/zoom
+
+      // Optional reveal.js plugins
+      dependencies: [
+        //{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        //{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        //{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true },
+        { src: 'plugin/notes/notes.js', async: true }
+      ]
+    });
+    </script>
+
+    <script src="js/dynamic-theme.js"></script><script src="js/such-notes-print.js"></script><script src="js/custom.js"></script>
+
+  </body>
+</html>
