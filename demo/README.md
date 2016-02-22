@@ -33,3 +33,5 @@ Run list for demo:
 
 * Show cadvisor.nomad
   * runs cAdvisor which is a monitor tool
+
+I want to round off by saying that, although Nomad is cool, it is very new and has quite a few rough corners. It looks like it's gonna be a great tool, but it needs some time to get there.
