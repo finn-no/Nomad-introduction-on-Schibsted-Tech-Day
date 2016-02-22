@@ -15,7 +15,8 @@
     "gh-pages": "^0.10.0"
   },
   "scripts": {
-    "start": "prez --serve --such-notes --watch",
+    "start": "prez --serve --such-notes",
+    "develop": "prez --serve --such-notes --watch",
     "deploy": "rm -rf build && prez --such-notes && gh-pages -d build"
   }
 }
