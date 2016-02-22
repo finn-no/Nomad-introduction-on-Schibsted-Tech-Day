@@ -1,4 +1,10 @@
-## Introduction to Nomad held at Schibsted Tech Day 2016.02.18
+## Introduction to Nomad - 2016.02.18
+
+This is an introduction to Nomad held at Schibsted Tech Day 2016.02.18.
+
+To watch the presentation, just go to [https://finn-no.github.io/Nomad-introduction-on-Schibsted-Tech-Day/](https://finn-no.github.io/Nomad-introduction-on-Schibsted-Tech-Day/).
+
+More info below for working on the code.
 
 ### Requirements
 
