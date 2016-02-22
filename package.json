@@ -11,7 +11,11 @@
   "dependencies": {
     "prez": "^4.5.0"
   },
+  "devDependencies": {
+    "gh-pages": "^0.10.0"
+  },
   "scripts": {
-    "start": "prez --serve --such-notes --watch"
+    "start": "prez --serve --such-notes --watch",
+    "deploy": "rm -rf build && prez --such-notes && gh-pages -d build"
   }
 }
