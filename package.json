@@ -1,13 +1,13 @@
 {
-  "name": "nomad-intro",
+  "name": "nomad-introduction-on-schibsted-tech-day",
   "private": true,
-  "description": "Introduction to Nomad",
+  "description": "Introduction to Nomad held at Schibsted Tech Day 2016.02.18",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/finn-no/nomad-intro.git"
+    "url": "git+https://github.com/finn-no/Nomad-introduction-on-Schibsted-Tech-Day.git"
   },
   "author": "Stig Kleppe-Jørgensen",
-  "homepage": "https://github.com/finn-no/nomad-intro#readme",
+  "homepage": "https://github.com/finn-no/Nomad-introduction-on-Schibsted-Tech-Day#readme",
   "dependencies": {
     "prez": "^4.5.0"
   },
