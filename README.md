@@ -35,7 +35,7 @@ First, start up the presentation in reload mode:
 > npm run develop
 ```
 
-Now you can change the presentation and every change will be reloaded
+Now when you change the presentation, every change will be reloaded
 automatically in the browser.
 
 ### Deploy the presentation to GitHub Pages
